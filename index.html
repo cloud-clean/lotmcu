@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        .up{
+            margin-left: 70px;
+        }
+        .left{
+            margin-left: 30px;
+        }
+        .stop{
+            margin-left: 20px;
+        }
+        .right{
+            margin-left: 20px;
+        }
+        .down{
+            clear: both;
+            margin-left: 70px;
+            margin-top: 45px;
+        }
+        .midle{
+            margin-top: 5px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="up">
+        <button onclick="control('up')">前</button>
+    </div>
+    <div class="midle">
+        <div class="midle left">
+            <button onclick="control('left')">左</button>
+        </div>
+        <div class="midle stop">
+            <button onclick="control('stop')">停止</button>
+        </div>
+        <div class="midle right">
+            <button onclick="control('right')">右</button>
+        </div>
+    </div>
+    <div class="down">
+        <button onclick="control('down')">后</button>
+    </div>
+
+
+</body>
+    <script>
+        function control(dir){
+            if(dir == 'up'){
+                $.ajax({'url':'/car?cmd=start',async:false});
+            }else if(dir == "stop"){
+                $.ajax({'url':'/car?cmd=stop',async:false});
+            }else if(dir == "left"){
+                $.ajax({'url':'/car?cmd=left',async:false});
+            }else if(dir =="right"){
+                $.ajax({'url':'/car?cmd=right',async:false})
+            }else if(dir =="down"){
+                $.ajax({'url':'/car?cmd=back',async:false})
+            }
+        }
+    </script>
+</html>

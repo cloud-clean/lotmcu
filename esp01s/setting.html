@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wifi 设置</title>
+</head>
+<div>
+    <div class="wifi_setting">
+        <div class = "wifi setting_title">
+            设置
+        </div>
+        <table class="wifi">
+            <tr>
+                <td>
+                    设备ID:
+                </td>
+                <td>
+                    <input id="client_id" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        SSID:
+                </td>
+                <td>
+                    <input id = "input_ssid" type="text">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                        PASSWD:
+                </td>
+                <td>
+                    <input type="text" id="input_passwd">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <input type="button" value="确定" onclick="submit()">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<body>
+
+</body>
+<style>
+    body{
+        margin:0;
+        padding:0;
+    }
+    .wifi_setting{
+        float:left;
+        position: relative;
+        left: 50%;
+        clear:both;
+        margin-top:10%;
+    }
+    .wifi{
+        margin-top: 20px;
+        position: relative;
+        left: -50%;
+    }
+    .setting_title{
+        font-size: large;
+        text-align: left;
+        position:relative;
+        left: -25%;
+    }
+</style>
+<script>
+    function submit(){
+        var ssid = document.getElementById("input_ssid").value;
+        var passwd = document.getElementById("input_passwd").value;
+        var clientId = document.getElementById("client_id").value;
+        if(ssid == "" || passwd == "" || clientId==""){
+            alert("参数不能为空");
+            return;
+        }
+        var params = 'ssid='+ssid+'&pwd='+passwd+'&clientId='+clientId;
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('get','/setting?'+params);
+        xmlHttpRequest.onload = function(resp){
+            if(xmlHttpRequest.status == 200){
+                alert("设置成功");
+            }else{
+                alert("设置出错");
+            }
+        };
+        xmlHttpRequest.send();
+    }
+</script>
+</html>
